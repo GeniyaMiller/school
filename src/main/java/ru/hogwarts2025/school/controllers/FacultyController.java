@@ -49,4 +49,5 @@ public class FacultyController {
         this.facultyService.deleteFaculty(id);
         return ResponseEntity.ok().build();
     }
+
 }

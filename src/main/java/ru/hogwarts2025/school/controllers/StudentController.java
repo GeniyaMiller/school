@@ -32,13 +32,13 @@ public class StudentController {
         return ResponseEntity.ok(student);
     }
     @GetMapping
-    public ResponseEntity<Collection<Student>> getAllStudents(@RequestParam(required = false) int age){
-        if(age != 0){
+    public ResponseEntity<Collection<Student>> getAllStudents(@RequestParam(required = false) Integer age){
+        if(age != null){
             return ResponseEntity.ok(studentService.getStudentsByAge(age));
-        }
+        }else
         return ResponseEntity.ok(this.studentService.getAllStudents());
     }
-    @PutMapping()
+    @PutMapping
     public ResponseEntity<Student> updateStudent(@RequestBody Student student){
         Student foundStudent = this.studentService.updateStudent(student);
         if(foundStudent == null){
@@ -51,6 +51,9 @@ public class StudentController {
         this.studentService.deleteStudent(id);
         return ResponseEntity.ok().build();
     }
-
+    @GetMapping("/filterByAge")
+    public ResponseEntity<Collection<Student>> getStudentsBetweenAge(@RequestParam(required = true) int min,@RequestParam(required = true) int max){
+        return ResponseEntity.ok(this.studentService.getStudentsBetweenAge(min,max));
+    }
 
 }
