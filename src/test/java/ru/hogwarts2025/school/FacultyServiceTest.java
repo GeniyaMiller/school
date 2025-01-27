@@ -6,6 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.hogwarts2025.school.models.Faculty;
+import ru.hogwarts2025.school.models.Student;
 import ru.hogwarts2025.school.repositories.FacultyRepository;
 import ru.hogwarts2025.school.services.FacultyService;
 
@@ -45,7 +46,15 @@ public class FacultyServiceTest {
         List<Faculty> expectedList = List.of(expected);
         when(mock.findFacultyByColorIgnoreCase(anyString())).thenReturn(expectedList);
         assertEquals(expectedList,out.getFacultyByColor("белый"));
-
+    }
+    @Test
+    public void shouldReturnStudentsWhoStudyOnFaculty(){
+        Student st = new Student(1,"Bdfyjd Bdfy", 23);
+        List<Student> expectedList = List.of(st);
+        when(mock.findById(anyLong())).thenReturn(Optional.of(expected));
+        expected.setStudents(expectedList);
+        List<Student> actual =  out.getStudents(1);
+        assertEquals(expectedList, actual);
     }
 
 }

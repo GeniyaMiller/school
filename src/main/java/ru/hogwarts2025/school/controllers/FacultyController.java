@@ -5,9 +5,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts2025.school.models.Faculty;
 
+import ru.hogwarts2025.school.models.Student;
 import ru.hogwarts2025.school.services.FacultyService;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/faculty")
@@ -48,6 +50,10 @@ public class FacultyController {
     public ResponseEntity deleteFaculty(@PathVariable long id){
         this.facultyService.deleteFaculty(id);
         return ResponseEntity.ok().build();
+    }
+    @GetMapping("/get/students")
+    public ResponseEntity<List<Student>> getAllStudentsWhoStudyAtTheFaculty(@RequestParam long id){
+        return ResponseEntity.ok(this.facultyService.getStudents(id));
     }
 
 }

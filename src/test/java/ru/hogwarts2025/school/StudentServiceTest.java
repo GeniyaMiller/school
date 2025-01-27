@@ -5,6 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ru.hogwarts2025.school.models.Faculty;
 import ru.hogwarts2025.school.models.Student;
 import ru.hogwarts2025.school.repositories.StudentRepository;
 import ru.hogwarts2025.school.services.StudentService;
@@ -48,6 +49,19 @@ public class StudentServiceTest {
         List<Student> expectedStudents = List.of(expected);
         when(studentRepositoryMock.findByAge(anyInt())).thenReturn(expectedStudents);
         assertEquals(expectedStudents,out.getStudentsByAge(20));
+    }
+    @Test
+    public void shouldReturnStudentsByAgeBetween(){
+        List<Student> expectedStudents = List.of(expected);
+        when(studentRepositoryMock.findByAgeBetween(anyInt(),anyInt())).thenReturn(expectedStudents);
+        assertEquals(expectedStudents,out.getStudentsBetweenAge(20,22));
+    }
+    @Test
+    public void shouldReturnFacultyWhereStudyStudent(){
+        Faculty f = new Faculty(1,"sdf","white");
+        expected.setFaculty(f);
+        when(studentRepositoryMock.findById(anyLong())).thenReturn(Optional.of(expected));
+        assertEquals(f,out.getFaculty(1));
     }
 
 
