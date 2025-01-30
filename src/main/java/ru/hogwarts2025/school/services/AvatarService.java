@@ -44,7 +44,7 @@ public class AvatarService {
         ) {
             bis.transferTo(bos);
         }
-        Avatar avatar = avatarRepository.findAvatarByStudentId(studentId).orElse(new Avatar());
+        Avatar avatar = findAvatar(studentId);
         avatar.setStudent(student);
         avatar.setFilePath(filePath.toString());
         avatar.setFileSize(avatarFile.getSize());
@@ -53,6 +53,9 @@ public class AvatarService {
 
         avatarRepository.save(avatar);
 
+    }
+    public Avatar findAvatar(long studentId) {
+        return avatarRepository.findAvatarByStudentId(studentId).orElse(new Avatar());
     }
 
     private byte[] generateImagePreview(Path filePath) throws IOException {
@@ -73,4 +76,6 @@ public class AvatarService {
     private String getName(String fileName) {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
+
+
 }
