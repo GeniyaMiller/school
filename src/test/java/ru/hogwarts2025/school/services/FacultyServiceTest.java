@@ -1,4 +1,4 @@
-package ru.hogwarts2025.school;
+package ru.hogwarts2025.school.services;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -8,7 +8,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ru.hogwarts2025.school.models.Faculty;
 import ru.hogwarts2025.school.models.Student;
 import ru.hogwarts2025.school.repositories.FacultyRepository;
-import ru.hogwarts2025.school.services.FacultyService;
 
 import java.util.List;
 import java.util.Optional;

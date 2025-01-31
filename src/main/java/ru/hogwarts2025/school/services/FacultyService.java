@@ -1,5 +1,7 @@
 package ru.hogwarts2025.school.services;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 import ru.hogwarts2025.school.models.Faculty;
 import ru.hogwarts2025.school.models.Student;
