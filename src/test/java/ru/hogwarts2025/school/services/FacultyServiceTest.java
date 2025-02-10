@@ -48,7 +48,7 @@ public class FacultyServiceTest {
     }
     @Test
     public void shouldReturnStudentsWhoStudyOnFaculty(){
-        Student st = new Student(1,"Bdfyjd Bdfy", 23);
+        Student st = new Student("Bdfyjd Bdfy", 23);
         List<Student> expectedList = List.of(st);
         when(mock.findById(anyLong())).thenReturn(Optional.of(expected));
         expected.setStudents(expectedList);

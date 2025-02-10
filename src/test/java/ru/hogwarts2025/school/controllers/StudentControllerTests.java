@@ -71,7 +71,7 @@ public class StudentControllerTests {
 
         when(studentService.saveStudent(any(Student.class))).thenReturn(student);
         when(studentService.findById(anyLong())).thenReturn(student);
-        when(studentService.getAllStudents()).thenReturn(List.of(student));
+        when(studentService.getAllStudents(anyInt(),anyInt())).thenReturn(List.of(student));
         when(studentService.updateStudent(any(Student.class))).thenReturn(student);
         when(studentService.getStudentsByAge(anyInt())).thenReturn(List.of(student));
         when(studentService.getStudentsBetweenAge(anyInt(), anyInt())).thenReturn(List.of(student));

@@ -23,8 +23,9 @@ public class StudentController {
 
 
     @PostMapping
-    public Student createStudent(@RequestBody Student student) {
-        return this.studentService.saveStudent(student);
+    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
+       Student st = this.studentService.saveStudent(student);
+       return ResponseEntity.ok(st);
     }
     @GetMapping("/{id}")
     public ResponseEntity<Student> findStudentById(@PathVariable long id){
@@ -35,11 +36,11 @@ public class StudentController {
         return ResponseEntity.ok(student);
     }
     @GetMapping
-    public ResponseEntity<Collection<Student>> getAllStudents(@RequestParam(required = false) Integer age){
+    public ResponseEntity<Collection<Student>> getAllStudents(@RequestParam(required = false) Integer age,@RequestParam("pageNumber") Integer pageNumber,@RequestParam("pageSize") Integer pageSize){
         if(age != null){
             return ResponseEntity.ok(studentService.getStudentsByAge(age));
         }else
-        return ResponseEntity.ok(this.studentService.getAllStudents());
+        return ResponseEntity.ok(this.studentService.getAllStudents(pageNumber,pageSize));
     }
     @PutMapping
     public ResponseEntity<Student> updateStudent(@RequestBody Student student){

@@ -37,10 +37,11 @@ public class StudentServiceTest {
         verify(studentRepositoryMock,times(1)).findById(anyLong());
     }
     @Test
+
     public void shouldReturnStudentsWhenFindAllStudents(){
         List<Student> expectedStudents = List.of(expected);
-        when(studentRepositoryMock.findAll()).thenReturn((expectedStudents));
-        assertEquals(expectedStudents,out.getAllStudents());
+        when(studentRepositoryMock.findAll()).thenReturn(expectedStudents);
+        assertEquals(expectedStudents,out.getAllStudents(1,2));
     }
     @Test
     public void shouldReturnStudentsWhenFindStudentsByAge(){

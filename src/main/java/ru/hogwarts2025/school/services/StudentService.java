@@ -2,6 +2,7 @@ package ru.hogwarts2025.school.services;
 
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.hogwarts2025.school.models.Faculty;
 import ru.hogwarts2025.school.models.Student;
@@ -29,8 +30,9 @@ public class StudentService{
         return studentRepository.findById(id).get();
     }
 
-    public Collection<Student> getAllStudents() {
-        return this.studentRepository.findAll();
+    public Collection<Student> getAllStudents(Integer pageNumber,Integer pageSize) {
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1,pageSize);
+        return this.studentRepository.findAll(pageRequest).getContent();
     }
 
     public Student updateStudent(Student student) {
@@ -52,4 +54,6 @@ public class StudentService{
     public Faculty getFaculty(long id) {
         return findById(id).getFaculty();
     }
+
+
 }
