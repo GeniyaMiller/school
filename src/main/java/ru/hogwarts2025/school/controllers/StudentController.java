@@ -10,7 +10,9 @@ import ru.hogwarts2025.school.models.Faculty;
 import ru.hogwarts2025.school.models.Student;
 import ru.hogwarts2025.school.services.StudentService;
 
+import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/student")
@@ -63,6 +65,18 @@ public class StudentController {
     public ResponseEntity<Faculty> getFaculty(@RequestParam long id){
         return ResponseEntity.ok(this.studentService.getFaculty(id));
 
+    }
+    @GetMapping("/sortedAndFilterByName/{string}")
+    public ResponseEntity<Collection<String>> getStudentsSortedByName(@PathVariable String string){
+        return ResponseEntity.ok(this.studentService.getStudentsSortedByName(string));    }
+    @GetMapping("/average_age_student")
+    public ResponseEntity<String> getAverageAgeAllStudents(){
+        String avg = this.studentService.getAverageAge();
+        return ResponseEntity.ok(avg);
+    }
+    @GetMapping("/print-parallel")
+    public void printStudentsParallel(){
+        this.studentService.getStudentsForParallelPrint();
     }
 
 }

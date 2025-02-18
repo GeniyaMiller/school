@@ -55,5 +55,10 @@ public class FacultyController {
     public ResponseEntity<List<Student>> getAllStudentsWhoStudyAtTheFaculty(@RequestParam long id){
         return ResponseEntity.ok(this.facultyService.getStudents(id));
     }
+    @GetMapping("/long_name")
+    public ResponseEntity<String> getLongNameFaculty(){
+        String longName = this.facultyService.getLongName();
+        return ResponseEntity.ok(longName);
+    }
 
 }
